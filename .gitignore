@@ -14,3 +14,7 @@ venv/
 # OS junk files
 .DS_Store
 Thumbs.db
+
+# Ignore log files
+*.log
+logs/
