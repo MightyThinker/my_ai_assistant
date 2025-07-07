@@ -1,20 +1,24 @@
-# Ignore Python cache files
+# Python cache and compiled files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 
-# Ignore virtual environments
+# Virtual environments
 env/
 venv/
 .venv/
 
-# Ignore editor-specific files
+# Environment variable files
+.env
+
+# Editor-specific settings
 .vscode/
 .idea/
 
-# OS junk files
+# OS-specific junk files
 .DS_Store
 Thumbs.db
 
-# Ignore log files
+# Log files
 *.log
 logs/
