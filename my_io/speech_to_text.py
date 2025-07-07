@@ -1,16 +1,21 @@
 import speech_recognition as sr
+from logger_config import logger
 
 def listen():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
         print("🎙️ Listening...")
-        audio = recognizer.listen(source)
-
-    try:
-        text = recognizer.recognize_google(audio)
-        print(f"🗣️ You said: {text}")
-        return text
-    except sr.UnknownValueError:
-        return "Sorry, I didn’t catch that."
-    except sr.RequestError:
-        return "Speech recognition service is unavailable."
+        try:
+            audio = recognizer.listen(source)
+            text = recognizer.recognize_google(audio)
+            print(f"🗣️ You said: {text}")
+            return text
+        except sr.UnknownValueError:
+            logger.warning("Speech not understood.")
+            return "Sorry, I didn’t catch that."
+        except sr.RequestError as e:
+            logger.error(f"Speech service request failed: {e}")
+            return "Speech recognition service is unavailable."
+        except Exception as e:
+            logger.exception("Unexpected error in listen()")
+            return "An error occurred while listening."
