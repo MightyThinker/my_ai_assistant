@@ -1,10 +1,10 @@
 from logger_config import logger
+from my_brain.llm_wrapper import llm_generate_response
 
-# This is a simple brain module that generates responses based on user input.
-def generate_response(text):
+def generate_response(text: str) -> str:
+    """Generate a response using the underlying LLM (OpenAI or local)."""
     try:
-        response = f"You said: {text}. I'm still learning!"
-        return response
-    except Exception as e:
-        logger.exception("Error in generate_response")
+        return llm_generate_response(text)
+    except Exception:
+        logger.exception("Error in generate_response (basic_brain)")
         return "Sorry, I had trouble thinking."
