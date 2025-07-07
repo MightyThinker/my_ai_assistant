@@ -7,5 +7,6 @@ def speak(text):
         engine = pyttsx3.init()
         engine.say(text)
         engine.runAndWait()
+        engine.stop()  # Properly release the speech engine
     except Exception as e:
         logger.exception("Unexpected error in speak()")
